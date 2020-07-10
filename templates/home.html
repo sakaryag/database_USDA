@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>The Latest Earthquakes - Home</title>
+    <link rel="stylesheet" href="/static/earthquake.css"/>
+  </head>
+  <body>
+    {% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <h1>The Latest Earthquakes</h1>
+    <p>Have a nice {{ day }}!</p>
+
+    <ul>
+      <li><a href="{{ url_for('earthquakes_page') }}">List earthquakes</a></li>
+      {% endblock %}
+
+    </ul>
+  </body>
+</html>
