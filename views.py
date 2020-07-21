@@ -36,6 +36,27 @@ def food_add_page():
         title = request.form["title"]
         foods = food_group(title)
         db = current_app.config["db"]
+        foods_key = db.add_food(foods)
+        return redirect(url_for("food_page", foods_key=foods_key))
+def food_group_add_page():
+    if not current_user.is_admin:
+        abort(401)
+    if request.method == "GET":
+        values = {"title": ""}
+        return render_template(
+            "food_group_edit.html",
+            values=values,
+        )
+    else:
+        valid = validate_food_form(request.form)
+        if not valid:
+            return render_template(
+                "food_group_edit.html",
+                values=request.form,
+            )
+        title = request.form["title"]
+        foods = food_group(title)
+        db = current_app.config["db"]
         foods_key = db.add_food_group(foods)
         return redirect(url_for("food_group_page", foods_key=foods_key))
 
@@ -48,14 +69,14 @@ def food_edit_page(food_key):
             abort(404)
         values = {"title": food_details.title}
         return render_template(
-            "food_edit.html",
+            "food_group_edit.html",
             values=values,
         )
     else:
         valid = validate_food_form(request.form)
         if not valid:
             return render_template(
-                "food_edit.html",
+                "food_group_edit.html",
                 values=request.form,
             )
         title = request.form.data["title"]

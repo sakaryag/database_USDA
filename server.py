@@ -46,6 +46,9 @@ def create_app():
         methods=["GET", "POST"],
     )
     app.add_url_rule(
+        "/new-food-group", view_func=views.food_group_add_page, methods=["GET", "POST"]
+    )
+    app.add_url_rule(
         "/new-food", view_func=views.food_add_page, methods=["GET", "POST"]
     )
 

@@ -9,9 +9,11 @@
         {% for food_key, food_group in foods %}
         <tr>
           <td>
+             {% if current_user.is_admin %}
             <label class="checkbox">
               <input type="checkbox" name="food_keys" value="{{ food_key }}"/>
             </label>
+            {%endif%}
             <a href="{{ url_for('food_page', food_key=food_key) }}">
               {{ food_group.title }}
 

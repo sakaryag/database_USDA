@@ -18,7 +18,12 @@
          </span>
          {% if current_user.is_admin %}
          <span class="navbar-item">
-           <a class="button is-link" href="{{ url_for('food_add_page') }}">Add Food Group</a>
+           <a class="button is-link" href="{{ url_for('food_group_add_page') }}">Add Food Group</a>
+         </span>
+         {% endif %}
+         {% if current_user.is_admin %}
+         <span class="navbar-item">
+           <a class="button is-link" href="{{ url_for('food_add_page') }}">Add Food</a>
          </span>
          {% endif %}
 
