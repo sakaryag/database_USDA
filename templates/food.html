@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}food{% endblock %}
+{% block content %}
+    <h1 class="title">food</h1>
+
+    <table class="table">
+
+      <tr>
+        <th>Title</th>
+        <td>{{ food_detail.FOOD_NAME}}</td>
+        <th>Description</th>
+        <td>{{ food_detail.DESCRIPTION }}</td>
+        <th>Nitrogen</th>
+        <td>{{ food_detail.NITROGEN }}</td>
+        <th>Protein</th>
+        <td>{{ food_detail.PROTEIN }}</td>
+        <th>Fat</th>
+        <td>{{ food_detail.FAT }}</td>
+        <th>Calorie</th>
+        <td>{{ food_detail.CALORIE }}</td>
+      </tr>
+
+
+    </table>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <a class="button is-primary is-outlined is-small"
+           href="{{ request.path }}/edit">Edit</a>
+      </div>
+    </div>
+{% endblock %}

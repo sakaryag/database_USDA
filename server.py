@@ -5,8 +5,8 @@ import views
 import os
 
 from database import Database
-from earthquake import Earthquake
-from user import get_user
+from food import food_group
+from food import food_detail
 
 
 lm = LoginManager()
@@ -22,30 +22,15 @@ def create_app():
     app.config.from_object("settings")
 
     app.add_url_rule("/", view_func=views.home_page)
+    app.add_url_rule("/foods/<int:food_key>", view_func=views.food_page)
 
     app.add_url_rule(
-        "/login", view_func=views.login_page, methods=["GET", "POST"]
-    )
-    app.add_url_rule("/logout", view_func=views.logout_page)
+        "/foods", view_func=views.food_group_page, methods=["GET", "POST"]
+        )
 
-    app.add_url_rule(
-        "/earthquakes", view_func=views.earthquakes_page, methods=["GET", "POST"]
-    )
-    app.add_url_rule("/earthquakes/<int:earthquake_key>", view_func=views.earthquake_page)
-    app.add_url_rule(
-        "/earthquakes/<int:earthquake_key>/edit",
-        view_func=views.earthquake_edit_page,
-        methods=["GET", "POST"],
-    )
-    app.add_url_rule(
-        "/new-earthquake", view_func=views.earthquake_add_page, methods=["GET", "POST"]
-    )
-
-    lm.init_app(app)
-    lm.login_view = "login_page"
 
     home_dir = os.path.expanduser("~")
-    db = Database(os.path.join(home_dir, "earthquakes.sqlite"))
+    db = Database(os.path.join(home_dir, "food.db"))
     app.config["db"] = db
 
     return app

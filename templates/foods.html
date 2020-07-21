@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block title %}food list{% endblock %}
+{% block content %}
+    <h1 class="title">USDA FOOD GROUPS</h1>
+
+    {% if foods %}
+    <form action="" method="post" name="food_list">
+      <table class="table is-striped is-fullwidth">
+        {% for food_key, food_group in foods %}
+        <tr>
+          <td>
+            <label class="checkbox">
+              <input type="checkbox" name="food_keys" value="{{ food_key }}"/>
+            </label>
+            <a href="{{ url_for('food_page', food_key=food_key) }}">
+              {{ food_group.title }}
+
+            </a>
+          </td>
+          <td>
+
+          </td>
+
+        </tr>
+        {% endfor %}
+      </table>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-danger is-small">Delete</button>
+        </div>
+      </div>
+    </form>
+    {% endif %}
+{% endblock %}
